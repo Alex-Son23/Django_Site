@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from .models import Product
+
+
+def product(request, pk):
+    print(pk)
+    return
 
 
 def products(request):
@@ -11,7 +17,8 @@ def products(request):
     ]
 
     context = {
-        'links_menu':links_menu
+        'title':'каталог',
+        'links_menu': links_menu
     }
     return render(request, 'mainapp/products.html', context=context)
 

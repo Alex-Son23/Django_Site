@@ -1,10 +1,17 @@
 from django.shortcuts import render
+# from ..mainapp.models import Product
+from mainapp.models import Product
 
 
 def index(request):
-    list_prams = {'no': 'Oh no'}
+    products = Product.objects.all()[:5]
 
-    context = render(request, 'geekshop/index.html', context=list_prams )
+    content = {
+        'title': 'главная',
+        'products': products
+    }
+
+    context = render(request, 'geekshop/index.html', context=content)
     return context
 
 

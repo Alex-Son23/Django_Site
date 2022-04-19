@@ -6,7 +6,7 @@
 			{%include 'geekshop/includes/header.html'%}
 			<div class="text-slider">
 				<h3 class="green">тенденции</h3>
-				<h3 class="big"> {{no}}удобные стулья</h3>
+				<h3 class="big"> удобные стулья {%now "Y"%}</h3>
 				<p>Новый уровень комфорта. Отличные характеристики.</p>
 				<a href="products/" class="button-order">заказать <img src="static/geekshop/img/arrow.png" alt=""></a>
 			</div>	
@@ -16,31 +16,24 @@
 	</div>
 
 	<div class="featured">
-	<div class="featured-menu">
-			<a class="active" href="#">Популярные</a><a href="#">Новинки</a>
-	</div>
-	<a class="explore" href="#">показать все <img src="static/geekshop/img/arrow.png" alt=""></a>
-	<div class="clearfix">
-	</div>
-	<div class="tab-content">
-		<div class="block">
-			<a href="#"><img src="static/geekshop/img/product-1.jpg" alt="">
-				<div class="text">
-					<img src="static/geekshop/img/icon-hover.png" alt="img">
-					<h4>Отличный стул</h4>
-					<p>Расположитесь комфортно. </p>
-				</div>
-			</a>
+		<div class="featured-menu">
+				<a class="active" href="#">Популярные</a><a href="#">Новинки</a>
 		</div>
-		<div class="block">
-			<a href="#"><img src="static/geekshop/img/product-2.jpg" alt="">
-				<div class="text">
-					<img src="static/geekshop/img/icon-hover.png" alt="">
-					<h4>Стул повышенного качества</h4>
-					<p>Не оторваться. </p>
-				</div>
-			</a>
+		<a class="explore" href="{% url 'products:index' %}">показать все <img src="static/geekshop/img/arrow.png" alt=""></a>
+		<div class="clearfix">
 		</div>
-	</div>
+		<div class="tab-content">
+			{%for product in products%}
+			<div class="block">
+				<a href="products/{{product.id}}"><img src="/media/{{product.image}}" class="product_img"  alt="{{product.short_desc}}">
+					<div class="text">
+						<img src="static/geekshop/img/icon-hover.png" alt="img">
+						<h4>{{product.name}}</h4>
+						<p>{{product.short_desc}}</p>
+					</div>
+				</a>
+			</div>
+			{%endfor%}
+		</div>
 	</div>
 {% endblock %}
