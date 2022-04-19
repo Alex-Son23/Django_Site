@@ -2,7 +2,10 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'geekshop/index.html')
+    list_prams = {'no': 'Oh no'}
+
+    context = render(request, 'geekshop/index.html', context=list_prams )
+    return context
 
 
 def contacts(request):

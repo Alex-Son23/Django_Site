@@ -1,0 +1,10 @@
+<div class="header clearfix">
+    <a href="{% url 'index' %}" class="logo"></a>
+    <ul class="menu">
+        <li><a href="{% url 'index' %}" class="{%if request.resolver_match.url_name == 'index'%}active{%endif%}">домой</a></li>
+        <li><a href="{% url 'products' %}" class="{%if request.resolver_match.url_name == 'products'%}active{%endif%}">продукты</a></li>
+        <li><a href="{% url 'contacts' %}" class="{%if request.resolver_match.url_name == 'contacts'%}active{%endif%}">контакты</a></li>
+    </ul>
+    <a href="#" class="search"></a>
+    <a href="#" class="basket"></a>
+</div>
