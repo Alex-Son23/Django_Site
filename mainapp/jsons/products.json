@@ -1,0 +1,39 @@
+[
+
+  {
+      "category": "стулья",
+      "name": "Табуретка",
+      "image": "products_images/Taburetki-dlya-kuhni-1-2.jpg",
+      "short_desc": "",
+      "description": "",
+      "price": "1300.00",
+      "quantity": 54
+  },
+  {
+      "category": "лампы",
+      "name": "Лампа шар",
+      "image": "products_images/product-1.jpg",
+      "short_desc": "",
+      "description": "",
+      "price": "1500.00",
+      "quantity": 34
+  },
+  {
+      "category": "стулья",
+      "name": "Стул-двойка",
+      "image": "products_images/product-2.jpg",
+      "short_desc": "",
+      "description": "",
+      "price": "4500.00",
+      "quantity": 32
+  },
+  {
+      "category": "2 в 1",
+      "name": "Раскладной диван",
+      "image": "products_images/product-3-sm.jpg",
+      "short_desc": "",
+      "description": "",
+      "price": "9000.00",
+      "quantity": 123
+  }
+]
