@@ -1,0 +1,33 @@
+{% extends 'mainapp/base.html'%}
+{%load static%}
+
+{% block content %}
+    <div class="hero-white">
+            {%include 'geekshop/includes/header.html'%}
+    </div>
+            {%include 'includes/inc_menu.html'%}
+
+        <div class="products_list">
+            <div class="title clearfix">
+                <h2>
+                    Категория: "{{ category.name|title }}"
+                </h2>
+            </div>
+           <div class="category-products related-products clearfix">
+                {% for product in products %}
+                        <div class="block">
+                            <a href=#>
+                                <img class="product_img" src="/media/{{ product.image }}" alt="product">
+                                <div class="text">
+                                    <img src="{% static 'geekshop/img/icon-hover.png' %}">
+                                    <h4>{{ product.name }}</h4>
+                                    <p>{{ product.short_desc }}</p>
+                                </div>
+                            </a>
+                        </div>
+                {% endfor %}
+
+           </div>
+        </div>
+
+{% endblock %}

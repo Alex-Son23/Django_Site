@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import products, product
+from .views import products
 # import mainapp.views as mainapp
 #FOR MEDIA
 from django.conf import settings
@@ -9,7 +9,7 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', products, name='index'),
-    path('<int:pk>/', product, name='product' )
+    path('category/<int:pk>/', products, name='category')
 ]
 
 
