@@ -356,6 +356,7 @@ html, body {
 .title {
 	height: 152px;
 	margin-right: 15px;
+	margin-bottom: 40px;
 }
 .title h2 {
 	float: left;
@@ -1037,17 +1038,23 @@ td:first-child {
 	float: left;
 	margin-right: 30px;
 	display: block;
-	height: 370px;
-	width: 370px;
+	height: 270px;
+	width: 270px;
 	position: relative;
 }
+
+.related-products .block .product_img{
+	width: 100%;
+	height: 100%;
+}
+
 .related-products .block:nth-child(3n) {
 	margin-right: 0px;
 }
 .related-products a .text {
 	display: none;
-	height: 368px;
-	width: 368px;
+	height: 270px;
+	width: 270px;
 	background-color: #ffffff;
     opacity: 0.9;
     position: absolute;
@@ -1075,4 +1082,10 @@ td:first-child {
 }
 .related-products a:hover .text{
 	display: block;
+}
+
+.category-products {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

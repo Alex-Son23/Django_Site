@@ -25,7 +25,7 @@
 		<div class="tab-content">
 			{%for product in products%}
 			<div class="block">
-				<a href="products/{{product.id}}"><img src="/media/{{product.image}}" class="product_img"  alt="{{product.short_desc}}">
+				<a href="{% url 'basket:add' product.pk %}"><img src="/media/{{product.image}}" class="product_img"  alt="{{product.short_desc}}">
 					<div class="text">
 						<img src="static/geekshop/img/icon-hover.png" alt="img">
 						<h4>{{product.name}}</h4>
