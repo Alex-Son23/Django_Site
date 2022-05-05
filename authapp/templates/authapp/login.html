@@ -4,7 +4,10 @@
 {%block content%}
     <form class="form-horizontal" action="{%url 'auth:login'%}" method="post">
         {%csrf_token%}
-        {{login_form}}
+        {%if next%}
+            <input type="hidden" name="next" value="{{next}}">
+        {%endif%}
+        {{login_form}}  
         <button type="submit" class="btn btn-primary">Войти</button>
     </form>
     <a href="{% url 'auth:register' %}">Регистрация</a>

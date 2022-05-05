@@ -272,6 +272,8 @@ html, body {
 	width: 100%;
 }
 
+
+
 .tab-content a .text {
 	display: none;
 	height: 268px;
@@ -908,6 +910,7 @@ td:first-child {
 	margin-right: 30px;
 }
 .slider-product {
+	display: block;
 	width: 570px;
 	height: 570px;
 }
@@ -1048,6 +1051,23 @@ td:first-child {
 	height: 100%;
 }
 
+.table .product_basket_img{
+	width: 300px; 
+	display:block ;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hot_product_img {
+	width: 570px;
+	vertical-align: middle;
+	margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+
+
 .related-products .block:nth-child(3n) {
 	margin-right: 0px;
 }
@@ -1089,3 +1109,5 @@ td:first-child {
 	align-items: center;
 	justify-content: center;
 }
+
+
