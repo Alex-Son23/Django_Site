@@ -1,0 +1,57 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Категории</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Товаров
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Описание</th>
+                            <th>Товары</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Описание</th>
+                            <th>Товары</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for item in objects %}
+                            <tr {% if not item.is_active %} style="opacity: 0.5; text-decoration: line-through;" {% endif %}>
+                                <td><a href="{% url 'admin_stuff:category_update' item.id %}" style="color: dodgerblue">{{ item.name }}</a></td>
+                                <td>{{ item.description }}</td>
+                                <td><a href="{% url 'admin_stuff:products' item.id %}" style="color: dodgerblue">Товары</a></td>
+                                <td>
+                                    <a {% if not item.is_active %} class="invisible" {% endif %} href="{% url 'admin_stuff:category_delete' pk=item.id %}">
+                                        <i class="fa fa-times-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'admin_stuff:category_create' %}">
+                    <button class="btn btn-success">Создать категорию</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

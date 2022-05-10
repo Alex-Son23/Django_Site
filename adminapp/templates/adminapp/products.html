@@ -1,0 +1,70 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Продукты</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Продукты категории {{ category.name }}
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Изображение</th>
+                            <th>Имя</th>
+                            <th>Описание</th>
+                            <th>Количество на складе</th>
+                            <th>Стоимость</th>
+                            <th>Радактировать</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Изображение</th>
+                            <th>Имя</th>
+                            <th>Описание</th>
+                            <th>Количество на складе</th>
+                            <th>Стоимость</th>
+                            <th>Радактировать</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for item in objects %}
+                            <tr {% if item.is_active %} style="opacity: 0.5; text-decoration: line-through;" {% endif %}>
+                                <td><img src="/media/{{ item.image }}"></td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.short_desc }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                                <td>
+                                    <a {% if item.is_active %} class="invisible" {% endif %} href="{#% url 'admin_staff:user_delete' pk=user.id %#}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a {% if item.is_active %} class="invisible" {% endif %} href="{#% url 'admin_staff:user_delete' pk=user.id %#}">
+                                        <i class="fa fa-times-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{#% url 'adminapp:user_create' %#}">
+                    <button class="btn btn-success">Создать товар</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
