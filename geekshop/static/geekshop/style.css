@@ -38,6 +38,22 @@ html, body {
 	float: left;
 }
 
+
+.paginator {
+	display: block;
+	text-align: center;
+}
+
+
+.paginator .current {
+	margin-top: 20px;
+}
+
+.paginator a{
+	text-decoration: none;
+}
+
+
 .menu {
 	list-style-type: none;
 	margin-top: 67px;
@@ -860,6 +876,8 @@ td:first-child {
 	position: relative;
 }
 
+
+
 .links {
 	height: 70px;
 	background-color: #f4f4f4;
@@ -1051,6 +1069,12 @@ td:first-child {
 	height: 100%;
 }
 
+
+.related-products-all {
+	margin-bottom: 20px;
+}
+
+
 .table .product_basket_img{
 	width: 300px; 
 	display:block ;
@@ -1066,6 +1090,8 @@ td:first-child {
     text-align: center;
     display: block;
 }
+
+
 
 
 .related-products .block:nth-child(3n) {
@@ -1105,7 +1131,7 @@ td:first-child {
 }
 
 .category-products {
-	display: flex;
+	/* display: flex; */
 	align-items: center;
 	justify-content: center;
 }

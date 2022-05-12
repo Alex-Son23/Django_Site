@@ -4,7 +4,7 @@
 {% block content %}
     <main>
         <div class="container-fluid">
-            <h1 class="mt-4">Пользователи</h1>
+            <h1 class="mt-4">Продукты</h1>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table mr-1"></i>
@@ -14,14 +14,14 @@
                     <div class="table-responsive">
                         <form class="form-horizontal" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {{ form.as_p }}
+                            {{ update_form.as_p }}
                             <input class="form-control" type="submit" value="сохранить">
                         </form>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{% url 'admin_stuff:users' %}">
-                        <button class="btn btn-success">К списку пользователей</button>
+                    <a href="{% url 'admin_stuff:products' pk=category.pk %}">
+                        <button class="btn btn-success">К списку продуктов</button>
                     </a>
                 </div>
             </div>

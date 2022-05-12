@@ -1,5 +1,6 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 
 {% block content %}
 <main>
@@ -38,9 +39,10 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        {% for user in objects %}
+                        {% for user in object_list %}
                             <tr {% if not user.is_active %} style="opacity: 0.5; text-decoration: line-through;" {% endif %}>
                                 <td><a href="{% url 'admin_stuff:user_update' user.id %}" style="color: dodgerblue">{{ user.username }}</a></td>
+                                <td><img src="{{ user.avatar|media_folder_users  }}" style="width: 150px;"></td>
                                 <td>{{ user.first_name }}</td>
                                 <td>{{ user.last_name }}</td>
                                 <td>{{ user.email }}</td>

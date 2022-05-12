@@ -1,5 +1,5 @@
 <div class="nav_list">
-    <a href="{% url 'admin_stuff:categories' %}" class="nav_link {% if request.resolver_match.url_name == 'products' %}
+    <a href="{% url 'admin_stuff:categories' %}" class="nav_link {% if request.resolver_match.url_name == 'categories' %}
                 active
            {% endif %}">
         <i class='bx bx-grid-alt nav_icon'></i>
@@ -11,4 +11,11 @@
         <i class='bx bx-user nav_icon'></i>
         <span class="nav_name">Пользователи</span>
     </a>
+    <a href="{% url 'admin_stuff:all_products_read' %}" class="{% if request.resolver_match.url_name == 'all_products_read' %}
+                active
+           {% endif %} nav_link">
+        <i class='bx bx-tab nav_icon'></i>
+        <span class="nav_name">Продукты</span>
+    </a>
+    
 </div>

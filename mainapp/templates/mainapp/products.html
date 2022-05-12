@@ -49,7 +49,7 @@
 			{%endif%}
 		</div>
 
-		<div class="related">
+		<!-- <div class="related">
 			<div class="title clearfix">
 				<h2>Похожие продукты</h2>
 				<a class="explore" href="{% url 'products:category' hot_product.pk %}">показать все <img src="{% static 'geekshop/img/arrow.png'%}" alt=""></a>
@@ -69,7 +69,53 @@
 			{% endfor %}
 
 			</div>
-		</div>
+		</div> -->
+
+
+		<div class="products_list related">
+            <div class="title clearfix">
+                <h2>
+                    Все товары:
+                </h2>
+            </div>
+           <div class="category-products related-products related-products-all clearfix ">
+                {% for product in products %}
+                        <div class="block">
+                            <a href="{% url 'products:detail' product.pk %}">
+                                <img class="product_img" src="/media/{{ product.image }}" alt="product">
+                                <div class="text">
+                                    <img src="{% static 'geekshop/img/icon-hover.png' %}">
+                                    <h4>{{ product.name }}</h4>
+                                    <p>{{ product.short_desc }}</p>
+                                </div>
+                            </a>
+                        </div>
+                {% endfor %}
+
+                
+
+           </div>
+		   <div class="paginator">
+				{% if products.has_previous %}
+					<a href="{% url 'products:page' products.previous_page_number %}">
+						<
+					</a>
+				{% endif %}
+				<span class="current">
+					страница {{ products.number }} из
+					{{ products.paginator.num_pages }}
+				</span>
+				{% if products.has_next %}
+					<a href="{% url 'products:page' products.next_page_number %}">
+						>
+					</a>
+				{% endif %}
+			</div>
+        </div>
+
+
+				
+
 	</div>
 
 	<div class="clr"></div>
