@@ -34,7 +34,7 @@
 		<div class="related">
 			<div class="title clearfix">
 				<h2>Похожие продукты</h2>
-				<a class="explore" href="#">показать все <img src="{% static 'geekshop/img/arrow.png'%}" alt=""></a>
+				<a class="explore" href="{% url 'products:category' product.category.pk %}">показать все <img src="{% static 'geekshop/img/arrow.png'%}" alt=""></a>
 			</div>
 			<div class="related-products clearfix">
 

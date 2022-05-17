@@ -7,13 +7,6 @@ from basketapp.models import Basket
 from .models import Product, ProductCategory
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    else:
-        return []
-
-
 def get_hot_product():
     products = Product.objects.all()
 
@@ -83,7 +76,6 @@ def products(request, pk=None, page=1):
     links_menu = ProductCategory.objects.all()
     products = Product.objects.all().order_by('price')
 
-    basket = get_basket(request.user)
 
     if pk is not None:
         if pk == 0:
@@ -98,7 +90,6 @@ def products(request, pk=None, page=1):
             'links_menu': links_menu,
             'category': category,
             'products': products,
-            'basket': basket,
         }
 
         return render(request, 'mainapp/products_list.html', context)
@@ -122,7 +113,6 @@ def products(request, pk=None, page=1):
             'products': products_paginator,
             'hot_product': hot_product,
             'same_products': same_product,
-            'basket': basket,
         }
     except IndexError:
         context = {
@@ -130,7 +120,6 @@ def products(request, pk=None, page=1):
             'links_menu': links_menu,
             'products': products_paginator,
             'hot_product': hot_product,
-            'basket': basket,
         }
 
     return render(request, 'mainapp/products.html', context=context)
@@ -141,7 +130,6 @@ def product(request, pk):
     links_menu = ProductCategory.objects.all()
     product = get_object_or_404(Product, pk=pk)
 
-    basket = get_basket(request.user)
 
     same_products = get_same_products(product)
 
@@ -150,7 +138,6 @@ def product(request, pk):
         'links_menu': links_menu,
         'product': product,
         'same_products': same_products,
-        'basket': basket
     }
 
     return render(request, 'mainapp/product.html', context=context)

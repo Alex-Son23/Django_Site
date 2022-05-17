@@ -2,7 +2,7 @@
     <a href="{% url 'index' %}" class="logo"></a>
     <ul class="menu">
         <li><a href="{% url 'index' %}" class="{%if request.resolver_match.url_name == 'index'%}active{%endif%}">домой</a></li>
-        <li><a href="{% url 'products:index' %}" class="{%if request.resolver_match.url_name == 'products'%}active{%endif%}">  продукты</a></li>
+        <li><a href="{% url 'products:products' %}" class="{%if request.resolver_match.url_name == 'products'%}active{%endif%}">  продукты</a></li>
         <li><a href="{% url 'contacts' %}" class="{%if request.resolver_match.url_name == 'contacts'%}active{%endif%}">контакты</a></li>
         {% if user.is_authenticated %}
             <li>
