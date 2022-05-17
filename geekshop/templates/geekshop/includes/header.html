@@ -19,7 +19,10 @@
             {%endif%}
         </li>
     </ul>
-    <a href="#" class="search"></a>
+    {%if request.resolver_match.namespace != 'basket'%}
+    <!-- {#%if request.resolver_match.namespaces[0] != '[basket]'%} -->
+        <a href="#" class="search"></a>
+    {%endif%}
     <a href="{% url 'basket:view' %}" class="basket" style="width:100px">
         <span>
             {% if basket %}

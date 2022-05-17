@@ -1,0 +1,39 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Пользователи</h1>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    {{ title|title }}
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        Уверены, что хотите удалить {{ user_to_delete.username }}
+                        {% if user_to_delete.first_name %}
+                          ({{ user_to_delete.first_name|title }}</b>
+                          {% if user_to_delete.last_name %}
+                            {{ user_to_delete.last_name|title }}
+                          {% endif %})
+                        {% endif %}
+                        ?
+                        <form action="{% url 'admin_stuff:user_delete' user_to_delete.pk %}"
+                              method="post">
+                          {% csrf_token %}
+                          <input class="btn btn-danger" type="submit" value="удалить">
+                        </form>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'admin_stuff:users' %}">
+                        <button class="btn btn-success">Отмена</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

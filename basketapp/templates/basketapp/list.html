@@ -13,51 +13,51 @@
         {%include 'geekshop/includes/header.html'%}
     </div>
 
-<div class="basket_list">
-    <table class="table" style="margin-top:40px;">
-      <thead >
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Картинка</th>
-          <th scope="col">Категория</th>
-          <th scope="col">Имя товара</th>
-          <th scope="col">Цена</th>
-          <th scope="col">Количество</th>
-          <th scope="col">Сумма</th>
-          <th scope="col">Удалить</th>
-        </tr>
-      </thead>
-      <tbody >
-        {% for item in basket_items %}
-        <tr>
-          <th scope="row">{{forloop.counter}}</th>
-          <td ><img src="/media/{{item.product.image}}" alt="{{item.short_desc}}" class="product_basket_img" ></td>
-          <td>{{item.product.category.name}}</td>
-          <td>{{item.product}}</td>
-          <td>{{item.product.price}}</td>
-          <td>
-            <input type="number" name="{{item.pk}}" min="0" value="{{item.quantity}}">
-          </td>
-          <td>{{item.product_cost}}</td>
-          <td>
-            <button class="btn btn-round">
-              <a href="{%url 'basket:remove' item.pk%}" class="">
-                Удалить
-              </a>
-            </button>
-          </td>
-        </tr>
-        {%endfor%}
-      </tbody>
-    </table>
+    <div class="basket_list">
+        <table class="table" style="margin-top:40px;">
+          <thead >
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Картинка</th>
+              <th scope="col">Категория</th>
+              <th scope="col">Имя товара</th>
+              <th scope="col">Цена</th>
+              <th scope="col">Количество</th>
+              <th scope="col">Сумма</th>
+              <th scope="col">Удалить</th>
+            </tr>
+          </thead>
+          <tbody >
+            {% for item in basket_items %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td ><img src="/media/{{item.product.image}}" alt="{{item.short_desc}}" class="product_basket_img" ></td>
+              <td>{{item.product.category.name}}</td>
+              <td>{{item.product}}</td>
+              <td>{{item.product.price}}</td>
+              <td>
+                <input type="number" name="{{item.pk}}" min="0" value="{{item.quantity}}">
+              </td>
+              <td>{{item.product_cost}}</td>
+              <td>
+                <button class="btn btn-round">
+                  <a href="{%url 'basket:remove' item.pk%}" class="">
+                    Удалить
+                  </a>
+                </button>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
 
-    {%if basket_items%}
-      <div class="basket_summary">
-        В корзине {{basket_items.0.total_quantity}} товаров общей стоимостью
-                  {{basket_items.0.total_cost}}
-      </div>
-    {%endif%}
-</div>
+        {%if basket_items%}
+          <div class="basket_summary">
+            В корзине {{basket_items.0.total_quantity}} товаров общей стоимостью
+                      {{basket_items.0.total_cost}}
+          </div>
+        {%endif%}
+    </div>
     <button class="btn btn-round form-control last">
         <a href="{% url 'index' %}" class="">
         на главную
