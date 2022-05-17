@@ -51,7 +51,7 @@ class ShopUserEditForm(UserChangeForm):
 
     def clean_age(self):
         data = self.cleaned_data['age']
-        print(self.data)
+        # print(self.data)
         if data < 18:
             raise forms.ValidationError("Вы слишком молоды!")
         return data

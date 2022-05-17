@@ -4,7 +4,7 @@
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Продукты</h1>
+        <h1 class="mt-4">{{ category.name|title}}</h1>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -36,20 +36,42 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        {% for item in objects %}
-                            <tr {% if item.is_active %} style="opacity: 0.5; text-decoration: line-through;" {% endif %}>
-                                <td><img src="/media/{{ item.image }}"></td>
-                                <td>{{ item.name }}</td>
+                        {% if object_list %}
+                            {% for item in object_list %}
+                            <tr {% if not item.is_active %} style="opacity: 0.5; text-decoration: line-through;" {% endif %}>
+                                <td><img src="/media/{{ item.image }}" class="w-25"></td>
+                                <td><a href="{% url 'admin_stuff:product_read' pk=item.pk %}">{{ item.name }}</a></td>
                                 <td>{{ item.short_desc }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.price }}</td>
                                 <td>
-                                    <a {% if item.is_active %} class="invisible" {% endif %} href="{#% url 'admin_staff:user_delete' pk=user.id %#}">
+                                    <a {% if not item.is_active %} class="invisible" {% endif %} href="{% url 'admin_stuff:product_update' pk=item.id %}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a {% if item.is_active %} class="invisible" {% endif %} href="{#% url 'admin_staff:user_delete' pk=user.id %#}">
+                                    <a {% if not item.is_active %} class="invisible" {% endif %} href="{% url 'admin_stuff:product_delete' pk=item.id %}">
+                                        <i class="fa fa-times-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        
+                        {% endif %}
+                        {% for item in objects %}
+                            <tr {% if not item.is_active %} style="opacity: 0.5; text-decoration: line-through;" {% endif %}>
+                                <td><img src="/media/{{ item.image }}" class="w-25"></td>
+                                <td><a href="{% url 'admin_stuff:product_read' pk=item.pk %}">{{ item.name }}</a></td>
+                                <td>{{ item.short_desc }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                                <td>
+                                    <a {% if not item.is_active %} class="invisible" {% endif %} href="{% url 'admin_stuff:product_update' pk=item.id %}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a {% if not item.is_active %} class="invisible" {% endif %} href="{% url 'admin_stuff:product_delete' pk=item.id %}">
                                         <i class="fa fa-times-circle"></i>
                                     </a>
                                 </td>
@@ -60,7 +82,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{#% url 'adminapp:user_create' %#}">
+                <a href="{% url 'admin_stuff:product_create' pk=1 %}">
                     <button class="btn btn-success">Создать товар</button>
                 </a>
             </div>
