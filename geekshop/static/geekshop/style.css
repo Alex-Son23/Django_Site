@@ -38,6 +38,15 @@ html, body {
 	float: left;
 }
 
+.user_avatar img{
+	width: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
 
 .paginator {
 	display: block;
@@ -1090,6 +1099,7 @@ td:first-child {
     text-align: center;
     display: block;
 }
+
 
 
 
