@@ -36,14 +36,14 @@ class OrderCreate(CreateView):
             if len(basket_items):
                 OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=len(basket_items))
                 formset = OrderFormSet()
-
                 for num, form in enumerate(formset.forms):
                     form.initial['product'] = basket_items[num].product
                     form.initial['quantity'] = basket_items[num].quantity
                     form.initial['price'] = basket_items[num].product.price
-                basket_items.delete()
+                    basket_items[num].delete()
             else:
                 formset = OrderFormSet()
+
         context['orderitems'] = formset
 
         return context
@@ -51,6 +51,8 @@ class OrderCreate(CreateView):
     def form_valid(self, form):
         context = self.get_context_data()
         orderitems = context['orderitems']
+        print(orderitems)
+        print(context)
 
         with transaction.atomic():
             form.instance.user = self.request.user
@@ -79,7 +81,8 @@ class OrderUpdate(UpdateView):
         else:
             formset = OrderFormSet(instance=self.object)
             for form in formset.forms:
-                if form.isinstance.pk:
+                print(form.instance.pk)
+                if form.instance.pk:
                     form.initial['price'] = form.instance.product.price
 
         context['orderitems'] = formset
@@ -125,8 +128,8 @@ def order_forming_complete(request, pk):
 
 @receiver(pre_save, sender=OrderItem)
 @receiver(pre_save, sender=Basket)
-def product_quantity_update_save(sender, update_fields, instance,**kwargs):
-    if update_fields is 'quantity':
+def product_quantity_update_save(sender, update_fields, instance, **kwargs):
+    if update_fields is 'quantity' or 'product':
         if instance.pk:
             instance.product.quantity -= instance.quantity - sender.get_item(instance.pk).quantity
         else:

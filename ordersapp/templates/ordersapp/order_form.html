@@ -1,6 +1,12 @@
 {% extends "geekshop/base.html" %}
 {% load static %}
 
+{% block css %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src='{% static "ordersapp/js/jquery.formset.js" %}'></script>
+    <script src='{% static "ordersapp/js/script.js" %}'></script>
+{% endblock %}
+
 {% block content %}
     <div class="hero-white">
         {% include 'geekshop/includes/header.html' %}
@@ -33,7 +39,16 @@
                                     {% endfor %}
                                 {% endif %}
                                 {{ field.errors.as_ul }}
-                                {{ field }}
+                                {% if field.name != 'price' %}
+                                    {{ field }}
+                                {% else %}
+                                    {% if field.value %}
+                                        <span class="orderitems-{{ forloop.parentloop.counter0}}-price">
+                                            {{ field.value }}
+                                        </span> руб.
+                                    {% endif %}
+                                {% endif %}
+
                             </td>
                         {% endfor %}
                     </tr>

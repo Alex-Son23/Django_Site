@@ -38,6 +38,17 @@ html, body {
 	float: left;
 }
 
+
+.order_form{
+	box-sizing: content-box !important;
+}
+
+
+.order_item_img{
+	width: 200px;
+}
+
+
 .user_avatar img{
 	width: 300px;
 	display: block;
@@ -1018,7 +1029,7 @@ td:first-child {
 	font-weight: 700;
 	text-align: center;
 	margin-top: 47px;
-	margin-bottom: 0px;
+	margin-bottom: 23px;
 }
 .description .red {
 	text-transform: uppercase;

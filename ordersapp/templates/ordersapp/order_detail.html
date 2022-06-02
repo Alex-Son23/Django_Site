@@ -3,12 +3,15 @@
 
 
 {% block content %}
+    <div class="hero-white">
+        {% include 'geekshop/includes/header.html' %}
+    </div>
    {% include 'ordersapp/includes/inc_order_summary.html' %}
    <div class="basket_list">
        {% for item in object.orderitems.select_related %}
            <div class="basket_record">
-               <img src="{{ item.product.image }}"
-                    alt="{{ item.product.short_desc }}">
+               <img src="/media/{{ item.product.image }}"
+                    alt="{{ item.product.short_desc }}" class="order_item_img">
                <span class="category_name">
                    {{ item.product.category.name }}
                </span>

@@ -26,13 +26,13 @@ def basket_add(request, pk):
         return HttpResponseRedirect(reverse('products:detail', args=[pk]))
 
     product = get_object_or_404(Product, pk=pk)
-    print(product)
     basket = Basket.objects.filter(user=request.user, product=product).first()
 
     if not basket:
         basket = Basket(user=request.user, product=product)
 
     basket.quantity += 1
+    # product.quantity
     basket.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
