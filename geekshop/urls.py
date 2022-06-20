@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import index, contacts
-#for media
+# for media
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,9 +29,12 @@ urlpatterns = [
     path('products/', include('mainapp.urls', namespace='products')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
+    path('orders/', include('ordersapp.urls', namespace='orders')),
     path('admin_stuff/', include('adminapp.urls', namespace='admin_stuff')),
+
+    path('', include('social_django.urls', namespace='social'))
 ]
 
-#FOR MEDIA
+# FOR MEDIA
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

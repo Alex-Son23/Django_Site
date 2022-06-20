@@ -2,34 +2,51 @@
     <a href="{% url 'index' %}" class="logo"></a>
     <ul class="menu">
         <li><a href="{% url 'index' %}" class="{%if request.resolver_match.url_name == 'index'%}active{%endif%}">домой</a></li>
-        <li><a href="{% url 'products:index' %}" class="{%if request.resolver_match.url_name == 'products'%}active{%endif%}">  продукты</a></li>
+        <li><a href="{% url 'products:products' %}" class="{%if request.resolver_match.url_name == 'products'%}active{%endif%}">  продукты</a></li>
         <li><a href="{% url 'contacts' %}" class="{%if request.resolver_match.url_name == 'contacts'%}active{%endif%}">контакты</a></li>
         {% if user.is_authenticated %}
-            <li>
-                <a href="{%url 'auth:edit'%}">
-                   {{ user.first_name|default:'Пользователь' }}
-                </a>
+            <li class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <a>{{ user.first_name|default:'Пользователь' }}</a>
             </li>
-        {%endif%}
-        <li>
-            {% if user.is_authenticated %}
-                <a href="{%url 'auth:logout'%}">выйти</a>
-            {%else%}
-                <a href="{%url 'auth:login'%}">войти</a>
-            {%endif%}
-        </li>
-    </ul>
-    {%if request.resolver_match.namespace != 'basket'%}
-    <!-- {#%if request.resolver_match.namespaces[0] != '[basket]'%} -->
-        <a href="#" class="search"></a>
-    {%endif%}
-    <a href="{% url 'basket:view' %}" class="basket" style="width:100px">
-        <span>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <a class="dropdown-item" href="{% url 'auth:edit' %}">
+                        Профиль</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{% url 'orders:orders_list' %}">
+                        Заказы</a>
+                </li>
+                {% if user.is_superuser %}
+                    <li><a class="dropdown-item" href="{% url 'admin_stuff:users' %}">Админка</a>
+                    </li>
+                {% endif %}
+                {% if basket %}
+                    <li><a class="dropdown-item" href="{% url 'basket:view' %}">Корзина</a>
+                    </li>
+                {% endif %}
+                    <li>
+                        {% if user.is_authenticated %}
+                            <a class="dropdown-item" href="{% url 'auth:logout' %}">выйти</a>
+                        {% endif %}
+                    </li>
+            </ul>
+
+
+
+
+
             {% if basket %}
-                {{ basket.0.total_cost|floatformat:0 }} руб
-                ({{ basket.0.total_quantity }} шт)
-<!--                {{ basket.0}}-->
+                <span>
+                    {{ basket.0.total_cost|floatformat:0 }} руб.
+                    ({{ basket.0.total_quantity }} шт.)
+                </span>
             {% endif %}
-        </span>
-    </a>
+
+        {% endif %}
+        {% if not user.is_authenticated %}
+            <a href="{% url 'auth:login' %}">войти</a>
+        {% endif %}
+    </ul>
+    <a href="#" class="search"></a>
 </div>

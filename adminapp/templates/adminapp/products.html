@@ -13,33 +13,62 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        {% if object_list %}
+                            <thead>
+                            <tr>
+                                <th>Изображение</th>
+                                <th>Категория</th>
+                                <th>Имя</th>
+                                <th>Описание</th>
+                                <th>Количество на складе</th>
+                                <th>Стоимость</th>
+                                <th>Радактировать</th>
+                                <th>Удалить</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Изображение</th>
+                                <th>Имя</th>
+                                <th>Описание</th>
+                                <th>Количество на складе</th>
+                                <th>Стоимость</th>
+                                <th>Радактировать</th>
+                                <th>Удалить</th>
+                            </tr>
+                            </tfoot>
+                        {% endif %}
+                        {% if objects %}
                         <thead>
-                        <tr>
-                            <th>Изображение</th>
-                            <th>Имя</th>
-                            <th>Описание</th>
-                            <th>Количество на складе</th>
-                            <th>Стоимость</th>
-                            <th>Радактировать</th>
-                            <th>Удалить</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Изображение</th>
-                            <th>Имя</th>
-                            <th>Описание</th>
-                            <th>Количество на складе</th>
-                            <th>Стоимость</th>
-                            <th>Радактировать</th>
-                            <th>Удалить</th>
-                        </tr>
+                            <tr>
+                                <th>Изображение</th>
+                                <th>Категория</th>
+                                <th>Имя</th>
+                                <th>Описание</th>
+                                <th>Количество на складе</th>
+                                <th>Стоимость</th>
+                                <th>Радактировать</th>
+                                <th>Удалить</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Изображение</th>
+                                <th>Имя</th>
+                                <th>Описание</th>
+                                <th>Количество на складе</th>
+                                <th>Стоимость</th>
+                                <th>Радактировать</th>
+                                <th>Удалить</th>
+                            </tr>
                         </tfoot>
+                        {% endif %}
                         <tbody>
                         {% if object_list %}
                             {% for item in object_list %}
                             <tr {% if not item.is_active %} style="opacity: 0.5; text-decoration: line-through;" {% endif %}>
                                 <td><img src="/media/{{ item.image }}" class="w-25"></td>
+                                <td><a href="{% url 'admin_stuff:products' item.category.pk %}">{{item.category|title}}</a></td>
                                 <td><a href="{% url 'admin_stuff:product_read' pk=item.pk %}">{{ item.name }}</a></td>
                                 <td>{{ item.short_desc }}</td>
                                 <td>{{ item.quantity }}</td>

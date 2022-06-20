@@ -24,7 +24,17 @@ def media_folder_users(string):
     if not string:
         string = 'avatar-placeholder.png'
 
+    # print()
+    if str(string)[:5] == 'https':
+        return string
     return f'{settings.MEDIA_URL}{string}'
+
+
+# def media_address(string):
+#     if not string:
+#         string = 'avatar-placeholder.png'
+#
+#     return
 
 
 register.filter('media_folder_products', media_folder_products)
